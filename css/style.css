@@ -1,0 +1,55 @@
+h1, h2 {
+	color: black;	
+	background-color: white;
+}
+
+p {
+	color: black;
+	
+}
+
+.intro-text {
+	background-color: white;
+} 
+
+li {
+	color: black;
+	font-style: none;
+	text-decoration: none;
+}
+
+a {
+	color: black;
+}
+
+body {
+	background-color: white;
+}
+
+nav {
+	background-color: transparent;	
+}
+
+.navbar {
+	background-color: transparent;	
+}
+
+.navbar .container{
+	background-color: transparent;	
+}
+
+#about {	
+	margin-right: 0px;
+	margin-left: 0px;
+	background: url(../img/triangles.jpg) no-repeat bottom center scroll;
+}
+
+#contact {
+	background-color: #FEBB6D;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+footer {
+	background-color: #FEBB6D;
+}
