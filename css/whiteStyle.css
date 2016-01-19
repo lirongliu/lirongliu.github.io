@@ -10,6 +10,7 @@
     /*margin-left: 0px;*/
     background: url(../img/triangles.jpg) no-repeat bottom center scroll;
     color: black;
+    margin-bottom: 100px;
 }
 
 #contact {
@@ -18,6 +19,12 @@
     color: black;
     /*margin-right: 0px;*/
     /*margin-left: 0px;*/
+}
+
+#myForm {
+    font-size: 18px;
+    border: none;
+    box-shadow: none;
 }
 
 body {
