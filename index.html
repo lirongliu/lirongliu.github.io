@@ -20,8 +20,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/grayscale.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/whiteStyle.css" rel="stylesheet">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -34,6 +34,22 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1023103097727927');
+    fbq('track', "PageView");</script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1023103097727927&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
 
 </head>
 
@@ -76,7 +92,7 @@
         <div class="intro-body">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
                         <h1 class="brand-heading">Habit Group</h1>
                         <p class="intro-text">
                             Break-in a new habit. <br>Start and join habit support groups and track your progress.
@@ -93,16 +109,14 @@
     <!-- About Section -->
     <section id="about" class="container content-section text-center">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
                 <h2>Welcome</h2>
                 <p>
                     Habit Club is an online community that supports personal growth one habit at a time. We allow you the ability to work on existing habits or start a new habit by joining groups or creating new groups. Habit groups are created by members like you! Choose whether you would like a public or private group. 
                 </p>
-                <ul>
-                    <li>Track your progress for each habit </li>
-                    <li>Get instant reminders and feedback</li>
-                    <li>Be supported by a community</li>
-                </ul>
+                <p>Track your progress for each habit. </br>
+                Get instant reminders and feedback. </br>
+                Be supported by a community. </p>
                 <p>
                     Let us help you start a new habit today!
                 </p>
@@ -114,11 +128,11 @@
     <!-- Contact Section -->
     <section id="contact" class="container content-section text-center">
         <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-                <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
+            <div class="col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+                <p>Feel free to leave your email address to us and we will contact you soon!</p>
             </div>
 
-            <div class="col-lg-4 col-lg-offset-4">
+            <div class="col-lg-2 col-lg-offset-5 col-md-4 col-md-offset-4">
 
 
                 <!-- <form role="form" method="post" action="test.php"> -->
@@ -206,9 +220,47 @@
     // not sure if you wanted this, but I thought I'd add it.
     // get an associative array of just the values.
     var values = [];
-    $inputs.each(function() {
+
+    for (var i = 0;i < $inputs.length; i++) {
+        console.log($inputs[i]);
+        if ($inputs[i].length == 0) {
+            var missingPart = "";
+            if (i == 0) {
+                missingPart = "first name";
+            } else if (i == 1) {
+                missingPart = "last name"
+            } else {
+                missingPart = "email";
+            }
+            alert("Please enter your " + missingPart + ".");
+            return false;
+        }
+    }
+
+    var missingPart = "";
+
+    $inputs.each(function(i) {
+        console.log($(this).val());
+        if (missingPart == "" && $(this).val().length == 0) {
+            if (i == 0) {
+                missingPart = "first name";
+            } else if (i == 1) {
+                missingPart = "last name"
+            } else if (i == 2) {
+                missingPart = "email";
+            }
+            return;
+        }
+
         values.push($(this).val());
-    });    
+    });
+
+    if (missingPart != "")  {
+        alert("Please enter your " + missingPart + ".");
+        return false;
+    }
+
+
 
     saveEmail(values[0] + " " + values[1], values[2]);
     alert ("Thank you " + values[0] + "! We really appreciate your interest in joinhabit.club.");
