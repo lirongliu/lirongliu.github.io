@@ -182,6 +182,10 @@
 
 
     <script type="text/javascript">
+
+
+    console.log("document.referrer: " + document.referrer);
+
     Parse.initialize("o4erKccuaYKlwJunNcXN2VMhweoHNEGvoBc08ppY", "acOZQZ0XPAmF8iVlshKFN76gMQd8HO96jVB5br2w");    
         var VisitCheck = Parse.Object.extend("VisitCheck");
         var visitCheck = new VisitCheck();
@@ -199,7 +203,7 @@
         var TestObject = Parse.Object.extend("TestObject");
 
         var testObject = new TestObject();
-          testObject.save({email: email, name: name}, {
+          testObject.save({email: email, name: name, from: document.referrer}, {
           success: function(object) {
             $(".success").show();
           },
@@ -262,8 +266,9 @@
 
 
 
+
     saveEmail(values[0] + " " + values[1], values[2]);
-    alert ("Thank you " + values[0] + "! We really appreciate your interest in joinhabit.club.");
+    alert ("Thank you " + values[0] + "! We really appreciate your interest in joinhabit.club. We will reach out to you soon.");
 
     return false;
     });
