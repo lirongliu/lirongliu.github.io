@@ -189,7 +189,7 @@
     Parse.initialize("o4erKccuaYKlwJunNcXN2VMhweoHNEGvoBc08ppY", "acOZQZ0XPAmF8iVlshKFN76gMQd8HO96jVB5br2w");    
         var VisitCheck = Parse.Object.extend("VisitCheck");
         var visitCheck = new VisitCheck();
-          visitCheck.save({}, {
+          visitCheck.save({from: document.referrer}, {
           success: function(object) {
             $(".success").show();
           },
