@@ -274,6 +274,19 @@
     });
 
   </script>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+         // collect value of input field
+         $token = $_POST['token']; 
+         if (empty($token)) {
+             echo "Name is empty";
+         } else {
+             echo "Yay!";
+         }
+    }
+    ?>
+
 </body>
 
 </html>
