@@ -35,7 +35,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
     <!-- Facebook Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -45,11 +44,16 @@
     document,'script','//connect.facebook.net/en_US/fbevents.js');
 
     fbq('init', '1023103097727927');
-    fbq('track', "PageView");</script>
+    fbq('track', "PageView");
+    fbq('track', 'ViewContent');
+    fbq('track', 'Lead');
+    </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1023103097727927&ev=PageView&noscript=1"
     /></noscript>
+
     <!-- End Facebook Pixel Code -->
+
 
 </head>
 
@@ -137,14 +141,14 @@
 
                 <!-- <form role="form" method="post" action="test.php"> -->
                 <form id = "myForm">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label for="fname">First Name</label>
                       <input type="text" class="form-control" id="fname">
                     </div>
                     <div class="form-group">
                       <label for="lname">Last Name</label>
                       <input type="text" class="form-control" id="lname">
-                    </div>
+                    </div> -->
                     <div class="form-group">
                       <label for="email">Email</label>
                       <input type="text" class="form-control" id="email">
@@ -183,13 +187,12 @@
 
     <script type="text/javascript">
 
-
-    console.log("document.referrer: " + document.referrer);
+    referrer = document.referrer
 
     Parse.initialize("o4erKccuaYKlwJunNcXN2VMhweoHNEGvoBc08ppY", "acOZQZ0XPAmF8iVlshKFN76gMQd8HO96jVB5br2w");    
         var VisitCheck = Parse.Object.extend("VisitCheck");
         var visitCheck = new VisitCheck();
-          visitCheck.save({from: document.referrer}, {
+          visitCheck.save({from: referrer}, {
           success: function(object) {
             $(".success").show();
           },
@@ -203,7 +206,7 @@
         var TestObject = Parse.Object.extend("TestObject");
 
         var testObject = new TestObject();
-          testObject.save({email: email, name: name, from: document.referrer}, {
+          testObject.save({email: email, name: name, from: referrer}, {
           success: function(object) {
             $(".success").show();
           },
@@ -225,37 +228,15 @@
     // get an associative array of just the values.
     var values = [];
 
-    for (var i = 0;i < $inputs.length; i++) {
-        console.log($inputs[i]);
-        if ($inputs[i].length == 0) {
-            var missingPart = "";
-            if (i == 0) {
-                missingPart = "first name";
-            } else if (i == 1) {
-                missingPart = "last name"
-            } else {
-                missingPart = "email";
-            }
-            alert("Please enter your " + missingPart + ".");
-            return false;
-        }
-    }
-
     var missingPart = "";
 
     $inputs.each(function(i) {
-        console.log($(this).val());
         if (missingPart == "" && $(this).val().length == 0) {
             if (i == 0) {
-                missingPart = "first name";
-            } else if (i == 1) {
-                missingPart = "last name"
-            } else if (i == 2) {
                 missingPart = "email";
             }
             return;
         }
-
         values.push($(this).val());
     });
 
@@ -264,11 +245,32 @@
         return false;
     }
 
+    saveEmail(null, values[0]);
+    alert ("Thank you! We really appreciate your interest in joinhabit.club. We will reach out to you soon.");
 
 
+    // $inputs.each(function(i) {
+    //     console.log($(this).val());
+    //     if (missingPart == "" && $(this).val().length == 0) {
+    //         if (i == 0) {
+    //             missingPart = "first name";
+    //         } else if (i == 1) {
+    //             missingPart = "last name"
+    //         } else if (i == 2) {
+    //             missingPart = "email";
+    //         }
+    //         return;
+    //     }
+    //     values.push($(this).val());
+    // });
 
-    saveEmail(values[0] + " " + values[1], values[2]);
-    alert ("Thank you " + values[0] + "! We really appreciate your interest in joinhabit.club. We will reach out to you soon.");
+    // if (missingPart != "")  {
+    //     alert("Please enter your " + missingPart + ".");
+    //     return false;
+    // }
+
+    // saveEmail(values[0] + " " + values[1], values[2]);
+    // alert ("Thank you " + values[0] + "! We really appreciate your interest in joinhabit.club. We will reach out to you soon.");
 
     return false;
     });
